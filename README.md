@@ -4,34 +4,14 @@ This project is for WSU CPT_S 322 Software Engineering Principles I. This app us
 
 ## To Run
 
-### 1. Install Expo CLI through npm
+### 1. Install npm packages
 
 ```bash
-npm install -g expo-cli
+npm install
 ```
 
-### 2. Run using
-
-On web, Android, and IOS
+### 2. Run app
 
 ```bash
 npm start
-```
-
-On the web
-
-```bash
-npm run web
-```
-
-On IOS (using ExpoGO app)
-
-```bash
-npm run ios
-```
-
-On Android (using ExpoGo app)
-
-```bash
-npm run android
 ```
