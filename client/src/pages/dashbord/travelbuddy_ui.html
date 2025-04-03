@@ -792,7 +792,7 @@
     // Login form submission
     document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
+      
       let username = document.getElementById('loginUsername').value;
       let password = document.getElementById('loginPassword').value;
       let remember = document.getElementById('remember').checked;
@@ -804,7 +804,8 @@
       message.style.color = 'green';
       message.style.textAlign = 'center';
       message.style.margin = '1rem 0';
-      
+
+
       // Add message to form
       this.appendChild(message);
       
