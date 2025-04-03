@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/firebase';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const SignupModal = ({ onClose, showLogin }) => {
   const [email, setEmail] = useState('');
@@ -56,11 +54,16 @@ const SignupModal = ({ onClose, showLogin }) => {
     return 'medium';
   };
 
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    showLogin();
+  };
+
   return (
     <div className="modal">
       <div className="modal-content">
         <span className="close-btn" onClick={onClose}>
-          <FontAwesomeIcon icon={faTimes} />
+          &times;
         </span>
         <div className="signup-form">
           <h2>Create Your Account</h2>
@@ -118,7 +121,10 @@ const SignupModal = ({ onClose, showLogin }) => {
               {loading ? 'Creating account...' : 'Sign Up'}
             </button>
             <div className="form-footer">
-              Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); showLogin(); }}>Log In</a>
+              Already have an account?{' '}
+              <button className="link-button" onClick={handleLoginClick}>
+                Log In
+              </button>
             </div>
           </form>
         </div>

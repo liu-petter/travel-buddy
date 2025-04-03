@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/firebase';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import './log.css';
 
 const LoginModal = ({ onClose, showSignup }) => {
   const [email, setEmail] = useState('');
@@ -25,57 +24,80 @@ const LoginModal = ({ onClose, showSignup }) => {
     }
   };
 
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+    console.log('Forgot password clicked');
+    alert('Password reset functionality coming soon!');
+  };
+
   return (
-    <div className="modal">
+    <div id="id01" className="modal">
       <div className="modal-content animate">
-        <span className="close-btn" onClick={onClose}>
-          <FontAwesomeIcon icon={faTimes} />
+        <span 
+          onClick={onClose}
+          className="close" 
+          title="Close Modal"
+        >
+          &times;
         </span>
-        <form className="login-form" onSubmit={handleSubmit}>
+
+        <div className="imgcontainer">
+          <img src="img_avatar2.png" alt="Avatar" className="avatar" />
+        </div>
+
+        <form onSubmit={handleSubmit}>
           <div className="container">
-            <div className="form-group">
-              <label htmlFor="loginEmail"><b>Email</b></label>
-              <input 
-                type="email" 
-                placeholder="Enter Email" 
-                id="loginEmail" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required 
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="loginPassword"><b>Password</b></label>
-              <input 
-                type="password" 
-                placeholder="Enter Password" 
-                id="loginPassword" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required 
-              />
-            </div>
-            <div className="remember">
+            {error && <div className="error-message">{error}</div>}
+            
+            <label htmlFor="uname"><b>Email</b></label>
+            <input 
+              type="text" 
+              placeholder="Enter Email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required 
+            />
+
+            <label htmlFor="psw"><b>Password</b></label>
+            <input 
+              type="password" 
+              placeholder="Enter Password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required 
+            />
+
+            <button type="submit" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+
+            <label>
               <input 
                 type="checkbox" 
                 checked={remember}
                 onChange={(e) => setRemember(e.target.checked)}
-                name="remember" 
-                id="remember" 
-              />
-              <label htmlFor="remember">Remember me</label>
-            </div>
-            {error && <div className="error">{error}</div>}
-            <button type="submit" className="form-submit-btn" disabled={loading}>
-              {loading ? 'Logging in...' : 'Login'}
+                name="remember"
+              /> Remember me
+            </label>
+          </div>
+
+          <div className="container" style={{backgroundColor: '#f1f1f1'}}>
+            <button 
+              type="button" 
+              onClick={onClose} 
+              className="cancelbtn"
+            >
+              Cancel
             </button>
-          </div>
-          <div className="bottom-container">
-            <button type="button" className="cancelbtn" onClick={onClose}>Cancel</button>
-            <span className="psw">Forgot <a href="#">password?</a></span>
-          </div>
-          <div className="form-footer">
-            Don't have an account? <a href="#" onClick={(e) => { e.preventDefault(); showSignup(); }}>Sign Up</a>
+            <span className="psw">
+              Forgot <button 
+                type="button" 
+                onClick={handleForgotPassword}
+                className="forgot-password-btn"
+              >
+                password?
+              </button>
+            </span>
           </div>
         </form>
       </div>

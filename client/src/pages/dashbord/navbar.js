@@ -1,22 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlusCircle, faSlidersH, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import './nav.css';
 
 const Navbar = ({ onLoginClick, onSignupClick }) => {
   return (
     <nav>
       <div className="nav-logo">Travel<span>Buddy</span></div>
       <div className="nav-links">
-        <Link to="/"><FontAwesomeIcon icon={faHome} /> Home</Link>
-        <Link to="/create-plan"><FontAwesomeIcon icon={faPlusCircle} /> Create Plan</Link>
-        <Link to="/preferences"><FontAwesomeIcon icon={faSlidersH} /> Preferences</Link>
+        <Link to="/"><i className="fas fa-home"></i> Home</Link>
+        <Link to="/create-plan"><i className="fas fa-plus-circle"></i> Create Plan</Link>
+        <Link to="/preferences"><i className="fas fa-sliders-h"></i> Preferences</Link>
         <div className="auth-buttons">
           <button className="auth-btn login-btn" onClick={onLoginClick}>
-            <FontAwesomeIcon icon={faSignInAlt} /> Login
+            <i className="fas fa-sign-in-alt"></i> Login
           </button>
           <button className="auth-btn signup-btn" onClick={onSignupClick}>
-            <FontAwesomeIcon icon={faUserPlus} /> Sign Up
+            <i className="fas fa-user-plus"></i> Sign Up
           </button>
         </div>
       </div>
