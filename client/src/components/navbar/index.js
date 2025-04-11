@@ -117,7 +117,7 @@ const Navbar = () => {
       <nav>
         <div className="nav-logo">Travel<span>Buddy</span></div>
         <div className="nav-links">
-          <a href="#"><FaHome /> Home</a>
+          <a href="/"><FaHome /> Home</a>
           <a href="/create-plan"><FaPlusCircle /> Create Plan</a>
           <a href="#"><FaSlidersH /> Preferences</a>
           <div className="auth-buttons">
