@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaHome, FaPlusCircle, FaSlidersH, FaSignInAlt, FaUserPlus, FaCompass, FaMagic, FaUserCog, FaEdit, FaSuitcase, FaSearch, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
 import "./index.css"
 import { auth } from "../../config/firebase"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 
 const DashboardPage = () => {
   const [showSignupModal, setShowSignupModal] = useState(false);
@@ -120,7 +120,7 @@ const DashboardPage = () => {
         <div className="nav-logo">Travel<span>Buddy</span></div>
         <div className="nav-links">
           <a href="#"><FaHome /> Home</a>
-          <a href="#"><FaPlusCircle /> Create Plan</a>
+          <a href="/create-plan"><FaPlusCircle /> Create Plan</a>
           <a href="#"><FaSlidersH /> Preferences</a>
           <div className="auth-buttons">
             <button className="auth-btn login-btn" onClick={() => setShowLoginModal(true)}>
