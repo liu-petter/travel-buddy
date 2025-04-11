@@ -40,10 +40,9 @@ const CreatePlanPage = () => {
       <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <Map
           style={{width: '100vw', height: '100vh'}}
-          defaultCenter={{lat: 22.54992, lng: 0}}
-          center={userLocation}
+          center={userLocation || {lat: 22.54992, lng: 0}}
           onClick={handleClickedLocation}
-          defaultZoom={3}
+          defaultZoom={10}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
         >
