@@ -2,17 +2,16 @@ import google.generativeai as genai
 import os
 import json
 from geopy.geocoders import Nominatim
-import re
 
 GOOGLE_API_KEY = "GOOGLE_API_KEY" #  GOOGLE_API_KEY  replace that soon 
 genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash-latest')
+model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 geolocator = Nominatim(user_agent="travel_planner")
 
 def generate_daily_itinerary(destination, num_days):
     """Generates a list of daily activities with exact locations (including full address) for a given destination and number of days."""
-    prompt = f"Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {destination}. Each item in the list should follow this format:\n\n'Day X: Activity - Exact Physical Address'\n\nFor example:\n\n'Day 1: Visit the Eiffel Tower - Champ de Mars, 5 Av. Anatole France, 75007 Paris, France'\n'Day 1: Explore the Louvre Museum - Rue de Rivoli, 75001 Paris, France'\n...\n\nOnly provide the numbered list of activities and exact physical addresses. Do not include any introductory or concluding paragraphs, explanations, or additional commentary. Do not include the leading number before 'Day X'."
+    prompt = f"Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {destination}. Each item in the list should follow this format:\n\n'Day X: Activity - Exact Physical Address'\n\nFor example:\n\n'1. Day 1: Visit the Eiffel Tower - Champ de Mars, 5 Av. Anatole France, 75007 Paris, France'\n'2. Day 1: Explore the Louvre Museum - Rue de Rivoli, 75001 Paris, France'\n...\n\nOnly provide the numbered list of activities and exact physical addresses. Do not include any introductory or concluding paragraphs, explanations, or additional commentary."
     response = model.generate_content(prompt)
     return response.text
 
@@ -32,32 +31,20 @@ def get_lat_long(location_name):
 def parse_itinerary_to_list_with_coords(itinerary_text):
     """Parses the plain text itinerary into a list of dictionaries with day, activity, and coordinates."""
     itinerary_list = []
-    day_counter = 1
     for line in itinerary_text.strip().split('\n'):
         line = line.strip()
-        if line and isinstance(line, str) and line.startswith("Day"):
+        if line and line[0].isdigit():
             try:
                 parts = line.split(': ', 1)
-                day_activity = parts[0].strip()
-                full_description = parts[1].strip()
+                day_activity_num = parts[0].strip()
+                address = parts[1].strip()
 
-                # Extract day number
-                day_match = re.search(r'Day\s*(\d+)', day_activity, re.IGNORECASE)
-                if day_match:
-                    day = day_match.group(1)
-                else:
-                    day = str(day_counter)
-                    day_counter += 1
+                day_num_str = day_activity_num.split('.')[0].strip().replace("Day", "").strip()
+                day = day_num_str
 
-                # Find the first occurrence of " - " to separate activity and address
-                split_index = full_description.find(' - ')
-                if split_index != -1:
-                    activity = full_description[:split_index].strip()
-                    location_name = full_description[split_index + 3:].strip()
-                else:
-                    activity = full_description.strip()
-                    location_name = ""
-                    print(f"Warning: Could not find ' - ' separator in line: {line}")
+                activity_parts = address.split(' - ')
+                activity = activity_parts[0].strip()
+                location_name = ' - '.join(activity_parts[1:]).strip() if len(activity_parts) > 1 else ""
 
                 latitude, longitude = get_lat_long(location_name)
 
@@ -72,13 +59,6 @@ def parse_itinerary_to_list_with_coords(itinerary_text):
                 print(f"Warning: Could not parse line: {line}")
             except ValueError:
                 print(f"Warning: Could not extract day number from line: {line}")
-        elif line:  # If the line is not empty and doesn't start with "Day", treat as continuation
-            if itinerary_list:
-                itinerary_list[-1]["exact_address"] += f" {line}"
-                latitude, longitude = get_lat_long(itinerary_list[-1]["exact_address"])
-                itinerary_list[-1]["latitude"] = latitude
-                itinerary_list[-1]["longitude"] = longitude
-
     return itinerary_list
 
 if __name__ == "__main__":
