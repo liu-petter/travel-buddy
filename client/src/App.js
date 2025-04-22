@@ -1,9 +1,11 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PreferencesPage from "./pages/preferences";
 import DashboardPage from "./pages/dashbord";
-import CreatePlanPage from './pages/createPlan/CreatePlanPage';
+import CreatePlanPage from "./pages/createPlan/CreatePlanPage";
+import SwipePage from "./pages/swipe/SwipePage";
+import MapView from "./pages/map/MapView"; 
 import Navbar from "./components/navbar";
-import MapView from "./pages/map/MapView"; // ✅ Correct import
 
 function App() {
   return (
@@ -14,7 +16,8 @@ function App() {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/preferences" element={<PreferencesPage />} />
           <Route path="/create-plan" element={<CreatePlanPage />} />
-          <Route path="/map" element={<MapView />} /> {/* ✅ New route */}
+          <Route path="/swipe" element={<SwipePage />} />
+          <Route path="/map" element={<MapView />} />
         </Routes>
       </div>
     </Router>
