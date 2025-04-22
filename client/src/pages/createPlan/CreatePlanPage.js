@@ -31,7 +31,7 @@ const CreatePlanPage = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("❌ Something went wrong.");
+      setMessage("❌ Something went wrong." + error);
     } finally {
       setLoading(false);
     }
