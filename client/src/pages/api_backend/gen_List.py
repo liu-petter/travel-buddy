@@ -3,7 +3,7 @@ import os
 import json
 from geopy.geocoders import Nominatim
 
-GOOGLE_API_KEY = "GOOGLE_API_KEY" #  GOOGLE_API_KEY  replace that soon 
+GOOGLE_API_KEY = "" #  GOOGLE_API_KEY  replace that soon 
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
