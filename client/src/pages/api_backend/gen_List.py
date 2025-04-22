@@ -5,7 +5,7 @@ import json
 import time
 from geopy.geocoders import Nominatim
 
-GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"  
+GOOGLE_API_KEY = "AIzaSyD_21teKNbPGaNO3Y8i_DbkEKgDmUjBYIU"  
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
