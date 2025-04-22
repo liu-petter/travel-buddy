@@ -44,3 +44,7 @@ body{
     border-top-right-radius: 1rem;
     z-index: 1;
 }
+
+.card-title h4{
+    font-size: small;
+}
