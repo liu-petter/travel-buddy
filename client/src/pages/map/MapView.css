@@ -1,21 +1,22 @@
 .map-wrapper {
-  display: flex;
-  height: 100vh;
-}
-
-.sidebar {
-  width: 25%;
-  padding: 20px;
-  overflow-y: auto;
-  background-color: #f9f9f9;
-  border-left: 1px solid #ccc;
-}
-
-.sidebar h3 {
-  margin-top: 0;
-}
-
-.sidebar p {
-  margin: 8px 0;
-  font-size: 14px;
-}
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 25%;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border-left: 1px solid #ccc;
+  }
+  
+  .sidebar h3 {
+    margin-top: 0;
+  }
+  
+  .sidebar p {
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  
