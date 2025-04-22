@@ -14,11 +14,11 @@ const SwipePage = () => {
     fetch('/locations.json')
       .then((res) => res.json())
       .then((data) => {
-        console.log('📦 Loaded locations:', data);
+        console.log('Loaded locations:', data);
         setPlaces(data);
         setCurrentIndex(0);
       })
-      .catch((err) => console.error('❌ Error loading locations.json:', err));
+      .catch((err) => console.error('Error loading locations.json:', err));
   }, []);
 
   const handleSwipe = (direction, place) => {
@@ -81,7 +81,7 @@ const SwipePage = () => {
 
       {currentIndex >= places.length && places.length > 0 && (
         <button onClick={handleDone} className="done-btn">
-          ✅ View Your Selected Places
+           View Your Selected Places
         </button>
       )}
 
