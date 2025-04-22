@@ -1,0 +1,64 @@
+.create-plan-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 100px 30px 30px;
+    background-color: #f5faff;
+  }
+  
+  .create-plan-page h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+  }
+  
+  .create-plan-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .create-plan-page label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .create-plan-page input {
+    margin-top: 6px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .create-plan-page button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-plan-page button:hover {
+    background-color: #0056cc;
+  }
+  
+  .status-message {
+    margin-top: 20px;
+    font-style: italic;
+    color: #333;
+    text-align: center;
+  }
+  
