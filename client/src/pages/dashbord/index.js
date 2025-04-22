@@ -46,8 +46,6 @@ const DashboardPage = () => {
 
           <div className="card">
             <h3><FaSuitcase /> Your Trips</h3>
-            <div className="trip-card">
-            </div>
             <YourTrips />
           </div>
         </div>
