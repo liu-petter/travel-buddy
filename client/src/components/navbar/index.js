@@ -1,12 +1,18 @@
-import React, { useState } from "react"
-import { FaHome, FaPlusCircle, FaSlidersH, FaSignInAlt, FaUserPlus } from "react-icons/fa"
+import React, { useState, useEffect } from "react"
+import { FaHome, FaPlusCircle, FaSignInAlt, FaUserPlus, FaSignOutAlt } from "react-icons/fa"
 import { auth } from "../../config/firebase"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
 import "./index.css"
 
 const Navbar = () => {
+  // hides modals
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+
+  // state of user login
+  const [isLoggedIn, setLoggedInState] = useState(false);
+
+  // stores login and signup info
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -15,11 +21,15 @@ const Navbar = () => {
     loginPassword: '',
     remember: false
   });
+
+  // used for signup validation
   const [passwordStrength, setPasswordStrength] = useState('');
   const [errors, setErrors] = useState({
     password: '',
     confirmPassword: ''
   });
+
+  // used to set the messaged displayed to the login/signup models
   const [messages, setMessages] = useState({
     signup: '',
     login: ''
@@ -112,6 +122,25 @@ const Navbar = () => {
     setShowLoginModal(false);
     setShowSignupModal(true);
   };
+
+  // look for auth change
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setLoggedInState(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // handle logout
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User logged out");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  }
+
   return (
     <div>
       <nav>
@@ -119,7 +148,14 @@ const Navbar = () => {
         <div className="nav-links">
           <a href="/"><FaHome /> Home</a>
           <a href="/create-plan"><FaPlusCircle /> Create Plan</a>
-          <div className="auth-buttons">
+          {isLoggedIn ? (
+            <div className="auth-buttons">
+              <button className="auth-btn login-btn" onClick={handleLogout}>
+                <FaSignOutAlt /> Logout
+              </button>
+            </div>
+          ) : (
+            <div className="auth-buttons">
             <button className="auth-btn login-btn" onClick={() => setShowLoginModal(true)}>
               <FaSignInAlt /> Login
             </button>
@@ -127,6 +163,7 @@ const Navbar = () => {
               <FaUserPlus /> Sign Up
             </button>
           </div>
+          )}
         </div>
       </nav>
 
