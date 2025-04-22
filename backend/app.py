@@ -22,7 +22,7 @@ def generate_daily_itinerary(city, num_days):
     prompt = f"""
     Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {city}. Format:
     1. Day X: Activity - Address
-    Only include the list, no extra text.
+    Only include the list, no extra text. insure there are at least 7 activities per day.
     """
     response = model.generate_content(prompt)
     return response.text

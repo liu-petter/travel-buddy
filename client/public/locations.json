@@ -1,1 +1,188 @@
-[]
+[
+    {
+        "activity": "Day 1: Cours Saleya Market",
+        "exact_address": "Cours Saleya, 06300 Nice, France",
+        "latitude": 43.6956069,
+        "longitude": 7.275027
+    },
+    {
+        "activity": "Day 1: Castle Hill",
+        "exact_address": "Rue des Ponchettes, 06300 Nice, France",
+        "latitude": 43.6949956,
+        "longitude": 7.2782845
+    },
+    {
+        "activity": "Day 1: Matisse Museum",
+        "exact_address": "164 Avenue des Arènes de Cimiez, 06000 Nice, France",
+        "latitude": 43.7090878,
+        "longitude": 7.2750231
+    },
+    {
+        "activity": "Day 1: Chagall Museum",
+        "exact_address": "Avenue Docteur Ménard, 06000 Nice, France",
+        "latitude": 43.7089809,
+        "longitude": 7.2686982
+    },
+    {
+        "activity": "Day 1:  Promenade des Anglais",
+        "exact_address": "Promenade des Anglais, 06000 Nice, France",
+        "latitude": 43.6859892,
+        "longitude": 7.2374765
+    },
+    {
+        "activity": "Day 1:  Place Masséna",
+        "exact_address": "Place Masséna, 06000 Nice, France",
+        "latitude": 43.6969486,
+        "longitude": 7.2703241
+    },
+    {
+        "activity": "Day 1: Dinner at La Merenda",
+        "exact_address": "4 Rue Raoul Bosio, 06300 Nice, France",
+        "latitude": 43.6965087,
+        "longitude": 7.2730632
+    },
+    {
+        "activity": "Day 1:  Opera de Nice",
+        "exact_address": "4-6 Rue Saint-François-de-Paule, 06300 Nice, France",
+        "latitude": 43.6957349,
+        "longitude": 7.273194
+    },
+    {
+        "activity": "Day 2: Eze Village",
+        "exact_address": "Rue du Château, 06360 Èze, France",
+        "latitude": 43.7279486,
+        "longitude": 7.3616529
+    },
+    {
+        "activity": "Day 2: Exotic Garden of Eze",
+        "exact_address": "Jardin Exotique d'Eze, Rue du Château, 06360 Eze, France",
+        "latitude": 43.7281991,
+        "longitude": 7.3612454
+    },
+    {
+        "activity": "Day 2: Fragonard Perfumery",
+        "exact_address": "20 Boulevard Jean Ossola, 06360 Eze Village, France",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "activity": "Day 2: Monaco-Ville",
+        "exact_address": "98000 Monaco",
+        "latitude": 43.7370396,
+        "longitude": 7.4238045
+    },
+    {
+        "activity": "Day 2: Monte-Carlo Casino",
+        "exact_address": "Place du Casino, 98000 Monaco",
+        "latitude": 43.7393999,
+        "longitude": 7.4276882
+    },
+    {
+        "activity": "Day 2: Prince's Palace of Monaco",
+        "exact_address": "Place du Palais, 98000 Monaco",
+        "latitude": 43.7310468,
+        "longitude": 7.4209369
+    },
+    {
+        "activity": "Day 2:  Japanese Garden of Monaco",
+        "exact_address": "Avenue Princesse Grace, 98000 Monaco",
+        "latitude": 43.7487966,
+        "longitude": 7.4363452
+    },
+    {
+        "activity": "Day 2: Dinner at Rampoldi",
+        "exact_address": "3 Avenue des Spélugues, 98000 Monaco",
+        "latitude": 43.7403929,
+        "longitude": 7.427849
+    },
+    {
+        "activity": "Day 3:  Boat trip from Nice Port",
+        "exact_address": "Port Lympia, 06300 Nice, France",
+        "latitude": 43.6983517,
+        "longitude": 7.2844819
+    },
+    {
+        "activity": "Day 3:  Villefranche-sur-Mer",
+        "exact_address": "Villefranche-sur-Mer, 06230 France",
+        "latitude": 43.7042317,
+        "longitude": 7.309969
+    },
+    {
+        "activity": "Day 3:  Citadelle Saint-Elme",
+        "exact_address": "Citadelle St-Elme, 06230 Villefranche-sur-Mer, France",
+        "latitude": 43.7013753,
+        "longitude": 7.3109846
+    },
+    {
+        "activity": "Day 3:  Villa Ephrussi de Rothschild",
+        "exact_address": "Avenue Ephrussi de Rothschild, 06230 Saint-Jean-Cap-Ferrat, France",
+        "latitude": 43.6955092,
+        "longitude": 7.3295225
+    },
+    {
+        "activity": "Day 3:  Plage des Fossettes",
+        "exact_address": "Plage des Fossettes,  06230 Cap-d'Ail, France",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "activity": "Day 3:  Paloma Beach",
+        "exact_address": "Paloma Beach, Chemin de Paloma, 06230 Saint-Jean-Cap-Ferrat, France",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "activity": "Day 3: Dinner at  Jan",
+        "exact_address": "12 Rue Lascaris, 06300 Nice, France",
+        "latitude": 43.6998451,
+        "longitude": 7.2848279
+    },
+    {
+        "activity": "Day 3: Cocktails at  Movida",
+        "exact_address": "2 Rue du Congrès, 06000 Nice, France",
+        "latitude": 43.695252,
+        "longitude": 7.2635332
+    },
+    {
+        "activity": "Day 4:  Musée Marc Chagall",
+        "exact_address": "Avenue Docteur Ménard, 06000 Nice, France (in case you missed it earlier)",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "activity": "Day 4:  Parc Phoenix",
+        "exact_address": "405 Promenade des Anglais, 06200 Nice, France",
+        "latitude": 43.6683473,
+        "longitude": 7.2176314
+    },
+    {
+        "activity": "Day 4:  Musée d'Art Moderne et d'Art Contemporain (MAMAC)",
+        "exact_address": "Place Yves Klein, 06000 Nice, France",
+        "latitude": 43.701442,
+        "longitude": 7.278498
+    },
+    {
+        "activity": "Day 4:  Shopping on Avenue Jean Médecin",
+        "exact_address": "Avenue Jean Médecin, 06000 Nice, France",
+        "latitude": 43.702011,
+        "longitude": 7.2671143
+    },
+    {
+        "activity": "Day 4:  Cathédrale Orthodoxe Russe Saint-Nicolas",
+        "exact_address": "Avenue Nicolas II, 06000 Nice, France",
+        "latitude": 43.703006,
+        "longitude": 7.2536575
+    },
+    {
+        "activity": "Day 4:  Wine tasting at Cave Bianchi",
+        "exact_address": "7 Rue Raoul Bosio, 06300 Nice, France",
+        "latitude": 43.695961,
+        "longitude": 7.2728181
+    },
+    {
+        "activity": "Day 4: Farewell dinner at  Aphrodite",
+        "exact_address": "10 Rue Saint-Gaëtan, 06300 Nice, France",
+        "latitude": 43.69599,
+        "longitude": 7.2755992
+    }
+]
