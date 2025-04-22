@@ -7,7 +7,7 @@ import os
 import time
 
 
-GOOGLE_API_KEY = "KEY"
+GOOGLE_API_KEY = "AIzaSyBiIBVelNjG6TFzfugbM6YPv5j44y4sY_Y"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 app = Flask(__name__)
@@ -18,41 +18,60 @@ geolocator = Nominatim(user_agent="travel_planner")
 
 def generate_daily_itinerary(city, num_days):
     prompt = f"""
-    Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {city}. Format:
-    1. Day X: Activity - Address
-    Only include the list, no extra text.
+    Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {city}.
+    Each item in the list should follow this format:
+
+    '1. Day X: Activity - Exact Physical Address'
+    Only provide the list without intro or conclusion.
     """
     response = model.generate_content(prompt)
     return response.text
 
-def get_lat_long(address):
+def get_lat_long(location_name):
     try:
-        location = geolocator.geocode(address, timeout=10)
+        location = geolocator.geocode(location_name, timeout=10)
         if location:
             return location.latitude, location.longitude
+        else:
+            print(f"Warning: Could not find coordinates for '{location_name}'.")
+            return None, None
     except Exception as e:
-        print("Geocode error:", e)
-    return None, None
+        print(f"Error geocoding '{location_name}': {e}")
+        return None, None
 
-def parse_itinerary(text):
-    results = []
-    for line in text.strip().split('\n'):
-        if not line or not line[0].isdigit():
-            continue
-        try:
-            _, content = line.split('. ', 1)
-            activity, address = content.split(' - ')
-            lat, lng = get_lat_long(address)
-            time.sleep(1)  # to avoid Nominatim throttling
-            results.append({
-                "activity": activity.strip(),
-                "exact_address": address.strip(),
-                "latitude": lat,
-                "longitude": lng
-            })
-        except Exception as e:
-            print("Parse error:", e)
-    return results
+
+def parse_itinerary_to_list_with_coords(itinerary_text):
+    itinerary_list = []
+    for line in itinerary_text.strip().split('\n'):
+        line = line.strip()
+        if line and line[0].isdigit():
+            try:
+                parts = line.split(': ', 1)
+                day_activity_num = parts[0].strip()
+                address = parts[1].strip()
+
+                day_num_str = day_activity_num.split('.')[0].strip().replace("Day", "").strip()
+                day = day_num_str
+
+                activity_parts = address.split(' - ')
+                activity = activity_parts[0].strip()
+                location_name = ' - '.join(activity_parts[1:]).strip() if len(activity_parts) > 1 else ""
+
+                #rate limit
+                time.sleep(1)
+
+                latitude, longitude = get_lat_long(location_name)
+
+                itinerary_list.append({
+                    "day": day,
+                    "activity": activity,
+                    "exact_address": location_name,
+                    "latitude": latitude,
+                    "longitude": longitude
+                })
+            except Exception as e:
+                print(f"Warning: Could not parse line: {line} ({e})")
+    return itinerary_list
 
 @app.route('/generate-plan', methods=['POST'])
 def generate_plan():
@@ -67,7 +86,7 @@ def generate_plan():
 
     try:
         raw = generate_daily_itinerary(city, int(days))
-        structured = parse_itinerary(raw)
+        structured = parse_itinerary_to_list_with_coords(raw)
 
         
         output_path = os.path.join(os.path.dirname(__file__), "../client/public/locations.json")
