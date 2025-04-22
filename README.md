@@ -1,19 +1,21 @@
 # TravelBuddy
 
-This project is for WSU CPT_S 322 Software Engineering Principles I. This app uses an AI API to generate travel plans based on user inputted preferences.
+This project is for WSU CPT_S 322 Software Engineering Principles I. This app uses an AI API to generate travel plans which can be fine tuned through swipable cards.
 
 ## To Run
 
 ### 1. Install packages
 Frontend
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 Backend
 ```bash
 pip install flask
 pip install flask-cors
-pip install flask-sqlalchemy
+pip install google-generativeai
+pip install geopy
+pip install python-dotenv
 ```
 
 ### 2. Run frontend app
@@ -23,5 +25,5 @@ npm start
 ```
 Navigate to server folder
 ```bash
-py server.py
+py app.py
 ```
