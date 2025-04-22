@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaCompass, FaMagic, FaSuitcase, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
-import "./index.css"
+import { FaCompass, FaMagic, FaSuitcase, FaSuitcase } from 'react-icons/fa';
+import YourTrips from "./YourTrips";
+import "./index.css";
 
 const DashboardPage = () => {
   const navigator = useNavigate();
@@ -25,14 +26,7 @@ const DashboardPage = () => {
 
           <div className="card">
             <h3><FaSuitcase /> Your Trips</h3>
-            <div className="trip-card">
-              <h4>Weekend Beach Getaway</h4>
-              <p><FaMapMarkerAlt /> Malibu, California • <FaCalendarAlt /> Jun 10-12</p>
-            </div>
-            <div className="trip-card">
-              <h4>Mountain Adventure</h4>
-              <p><FaMapMarkerAlt /> Rocky Mountains • <FaCalendarAlt /> Aug 5-12</p>
-            </div>
+            <YourTrips />
           </div>
         </div>
       </div>

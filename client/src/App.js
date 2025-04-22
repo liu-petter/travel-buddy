@@ -1,4 +1,3 @@
-// App.js
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DashboardPage from './pages/dashbord';
 import CreatePlanPage from './pages/createPlan/CreatePlanPage';
