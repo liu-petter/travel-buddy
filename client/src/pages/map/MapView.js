@@ -46,17 +46,17 @@ function MapView() {
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
 
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   
   // bring user to dashboard if not logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        navigator("/");
+        navigate("/");
       }
     });
     return () => unsubscribe();
-  }, [navigator]);
+  }, [navigate]);
 
   useEffect(() => {
     if (navigator.geolocation) {

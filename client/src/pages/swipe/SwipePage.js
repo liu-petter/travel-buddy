@@ -12,17 +12,17 @@ const SwipePage = () => {
   const [liked, setLiked] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   
   // bring user to dashboard if not logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        navigator("/");
+        navigate("/");
       }
     });
     return () => unsubscribe();
-  }, [navigator]);
+  }, [navigate]);
 
   useEffect(() => {
     fetch('/locations.json')
