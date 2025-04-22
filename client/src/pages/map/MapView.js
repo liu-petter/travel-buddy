@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import {
   MapContainer,
@@ -18,9 +19,8 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-// Distance function (in miles)
 function calculateDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371; // Radius in km
+  const R = 6371;
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLon = (lon2 - lon1) * Math.PI / 180;
   const a =
@@ -29,10 +29,9 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
     Math.cos(lat2 * Math.PI / 180) *
     Math.sin(dLon / 2) ** 2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c * 0.621371; // convert to miles
+  return R * c * 0.621371;
 }
 
-// Component to change map center dynamically
 function ChangeMapView({ coords }) {
   const map = useMap();
   useEffect(() => {
@@ -53,21 +52,21 @@ function MapView() {
             lat: pos.coords.latitude,
             lng: pos.coords.longitude,
           });
-          console.log('✅ User location:', pos.coords);
         },
-        (err) => console.warn('❌ Geolocation error:', err.message)
+        (err) => console.warn('Geolocation error:', err.message)
       );
     }
   }, []);
 
   useEffect(() => {
-    fetch('/locations.json')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('📦 Loaded locations:', data);
-        setLocations(data);
-      })
-      .catch((err) => console.error('❌ Failed to load locations:', err));
+    const liked = localStorage.getItem('likedPlaces');
+    if (liked) {
+      setLocations(JSON.parse(liked));
+    } else {
+      fetch('/locations.json')
+        .then((res) => res.json())
+        .then((data) => setLocations(data));
+    }
   }, []);
 
   const validLocations = locations.filter(
@@ -77,7 +76,7 @@ function MapView() {
   const defaultCenter =
     validLocations.length > 0
       ? [validLocations[0].latitude, validLocations[0].longitude]
-      : [52.52, 13.405]; // fallback (Berlin)
+      : [52.52, 13.405];
 
   const getDistance = (loc) => {
     const ref = userLocation || { lat: 52.52, lng: 13.405 };
@@ -86,11 +85,7 @@ function MapView() {
 
   return (
     <div className="map-wrapper">
-      <MapContainer
-        center={defaultCenter}
-        zoom={12}
-        style={{ height: '100vh', width: '75%' }}
-      >
+      <MapContainer center={defaultCenter} zoom={12} style={{ height: '100vh', width: '75%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; OpenStreetMap contributors"
