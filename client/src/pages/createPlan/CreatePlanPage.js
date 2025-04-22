@@ -1,5 +1,7 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
+import { auth } from "../../config/firebase"
+import { onAuthStateChanged } from "firebase/auth";
 import './CreatePlanPage.css';
 
 const CreatePlanPage = () => {
@@ -7,6 +9,18 @@ const CreatePlanPage = () => {
   const [days, setDays] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigator = useNavigate();
+  
+  // bring user to dashboard if not logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigator("/");
+      }
+    });
+    return () => unsubscribe();
+  }, [navigator]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

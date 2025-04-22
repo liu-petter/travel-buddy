@@ -1,7 +1,9 @@
-
 import React, { useEffect, useState } from 'react';
 import TinderCard from 'react-tinder-card';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { useNavigate } from "react-router-dom"
+import { auth } from "../../config/firebase"
+import { onAuthStateChanged } from "firebase/auth";
 import 'leaflet/dist/leaflet.css';
 import './SwipePage.css';
 
@@ -9,6 +11,18 @@ const SwipePage = () => {
   const [places, setPlaces] = useState([]);
   const [liked, setLiked] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const navigator = useNavigate();
+  
+  // bring user to dashboard if not logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigator("/");
+      }
+    });
+    return () => unsubscribe();
+  }, [navigator]);
 
   useEffect(() => {
     fetch('/locations.json')

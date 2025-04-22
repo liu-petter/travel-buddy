@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import {
   MapContainer,
@@ -10,6 +9,9 @@ import {
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './MapView.css';
+import { useNavigate } from "react-router-dom"
+import { auth } from "../../config/firebase"
+import { onAuthStateChanged } from "firebase/auth";
 
 // Fix marker icon paths
 delete L.Icon.Default.prototype._getIconUrl;
@@ -43,6 +45,18 @@ function ChangeMapView({ coords }) {
 function MapView() {
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+
+  const navigator = useNavigate();
+  
+  // bring user to dashboard if not logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigator("/");
+      }
+    });
+    return () => unsubscribe();
+  }, [navigator]);
 
   useEffect(() => {
     if (navigator.geolocation) {
