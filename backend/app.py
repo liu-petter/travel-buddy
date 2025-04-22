@@ -6,7 +6,7 @@ import json
 import os
 import time
 
-# 🔐 Replace with your real Gemini API key
+
 GOOGLE_API_KEY = "KEY"
 genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -63,13 +63,13 @@ def generate_plan():
     if not city or not days:
         return jsonify({"error": "Missing city or days"}), 400
 
-    print(f"🧠 Generating plan for {city} ({days} days)...")
+    print(f" Generating plan for {city} ({days} days)...")
 
     try:
         raw = generate_daily_itinerary(city, int(days))
         structured = parse_itinerary(raw)
 
-        # ✅ Safe path to write to client/public/locations.json
+        
         output_path = os.path.join(os.path.dirname(__file__), "../client/public/locations.json")
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
@@ -79,7 +79,7 @@ def generate_plan():
         return jsonify(structured)
 
     except Exception as e:
-        print("❌ Error generating plan:", e)
+        print(" Error generating plan:", e)
         return jsonify({"error": "Failed to generate plan"}), 500
 
 if __name__ == '__main__':
