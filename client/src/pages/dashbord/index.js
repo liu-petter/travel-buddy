@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaCompass, FaMagic, FaSuitcase, FaSuitcase } from 'react-icons/fa';
+import { FaCompass, FaMagic, FaSuitcase} from 'react-icons/fa';
 import YourTrips from "./YourTrips";
 import "./index.css";
 
