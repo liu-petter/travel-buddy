@@ -1,0 +1,86 @@
+[
+    {
+        "day": "1",
+        "activity": "Visit the Anne Frank House",
+        "exact_address": "Prinsengracht 263, 1016 GV Amsterdam, Netherlands",
+        "latitude": 52.3749427,
+        "longitude": 4.8843248
+    },
+    {
+        "day": "1",
+        "activity": "Explore the Rijksmuseum",
+        "exact_address": "Museumstraat 1, 1071 XX Amsterdam, Netherlands",
+        "latitude": 52.360024949999996,
+        "longitude": 4.885289077371566
+    },
+    {
+        "day": "2",
+        "activity": "Visit the Van Gogh Museum",
+        "exact_address": "Museumplein 6, 1071 DJ Amsterdam, Netherlands",
+        "latitude": 52.3579248,
+        "longitude": 4.8813227
+    },
+    {
+        "day": "2",
+        "activity": "Walk through Vondelpark",
+        "exact_address": "Vondelpark 3, 1075 AA Amsterdam, Netherlands",
+        "latitude": 52.361078250000006,
+        "longitude": 4.87500322056877
+    },
+    {
+        "day": "3",
+        "activity": "See the canals by boat",
+        "exact_address": "Stadhouderskade 501, 1072 AE Amsterdam, Netherlands (various departure points exist)",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "day": "3",
+        "activity": "Visit the Heineken Experience",
+        "exact_address": "Stadhouderskade 78, 1072 AE Amsterdam, Netherlands",
+        "latitude": 52.3578404,
+        "longitude": 4.891784
+    },
+    {
+        "day": "4",
+        "activity": "Explore the Jordaan district",
+        "exact_address": "(No single address, explore the area bounded roughly by the Prinsengracht, Brouwersgracht, and Leidsegracht canals) Amsterdam, Netherlands",
+        "latitude": null,
+        "longitude": null
+    },
+    {
+        "day": "4",
+        "activity": "Visit the Albert Cuyp Market",
+        "exact_address": "Albert Cuypstraat, 1073, Amsterdam, Netherlands",
+        "latitude": 52.355232900000004,
+        "longitude": 4.891778518933185
+    },
+    {
+        "day": "5",
+        "activity": "Visit the Rembrandt House Museum",
+        "exact_address": "Jodenbreestraat 4, 1011 NK Amsterdam, Netherlands",
+        "latitude": 52.3693667,
+        "longitude": 4.9012367
+    },
+    {
+        "day": "5",
+        "activity": "Explore the Begijnhof",
+        "exact_address": "Begijnhof 34, 1012 AM Amsterdam, Netherlands",
+        "latitude": 52.3691145,
+        "longitude": 4.8897114
+    },
+    {
+        "day": "6",
+        "activity": "Visit the Flower Market",
+        "exact_address": "Singel 124, 1012 WP Amsterdam, Netherlands",
+        "latitude": 52.3760473,
+        "longitude": 4.8904854
+    },
+    {
+        "day": "6",
+        "activity": "Visit the NDSM Wharf",
+        "exact_address": "TT Neveritaweg 1, 1033, Amsterdam, Netherlands",
+        "latitude": 52.4019462,
+        "longitude": 4.8938542
+    }
+]
