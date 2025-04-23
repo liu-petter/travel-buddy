@@ -116,12 +116,7 @@ def generate_plan():
         print(itinerary_text)
         itinerary_list_with_coords = parse_itinerary_to_list_with_coords(itinerary_text)
 
-        filename = f"client/public/locations.json"
-        with open(filename, 'w') as f:
-            json.dump(itinerary_list_with_coords, f, indent=4)
-        print(f"\nItinerary exported to: {filename}")
-
-        return jsonify(filename)
+        return jsonify(itinerary_list_with_coords), 200
 
     except Exception as e:
         print(" Error generating plan:", e)

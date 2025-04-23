@@ -10,8 +10,6 @@ const CreatePlanPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
-  
   // bring user to dashboard if not logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -40,12 +38,10 @@ const CreatePlanPage = () => {
       if (!response.ok) throw new Error("Failed to generate plan");
 
       const result = await response.json();
-console.log(" Generated trip data:", result);
 
-if (!Array.isArray(result) || result.length === 0) {
-  throw new Error("No locations were generated. Please try a different city.");
-}
-
+      if (!Array.isArray(result) || result.length === 0) {
+        throw new Error("No locations were generated. Please try a different city.");
+      }
 
       const tripMeta = {
         city,
@@ -54,6 +50,7 @@ if (!Array.isArray(result) || result.length === 0) {
         createdAt: Date.now(),
       };
 
+      // store plan into local storage
       const cityKey = `trip_${city.toLowerCase()}`;
       localStorage.setItem(cityKey, JSON.stringify(result));
 
