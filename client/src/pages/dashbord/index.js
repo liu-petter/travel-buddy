@@ -24,7 +24,7 @@ const DashboardPage = () => {
             <button className="btn" onClick={()=>navigator("/create-plan")}><FaMagic /> Generate Travel Plan</button>
           </div>
 
-          <div className="card">
+          <div className="card card-list">
             <h3><FaSuitcase /> Your Trips</h3>
             <YourTrips />
           </div>

@@ -8,6 +8,6 @@
     cursor: pointer;
   }
   
-  .delete-btn:hover {
+.delete-btn:hover {
     color: #e60023;
-  }
+}
