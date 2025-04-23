@@ -10,17 +10,17 @@ const CreatePlanPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const navigator = useNavigate();
+
   
   // bring user to dashboard if not logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        navigator("/");
+        navigate("/");
       }
     });
     return () => unsubscribe();
-  }, [navigator]);
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
