@@ -1,24 +1,17 @@
-
 import google.generativeai as genai
 import os
 import json
 import time
 from geopy.geocoders import Nominatim
 
-GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"  
+GOOGLE_API_KEY = "ket"  
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 geolocator = Nominatim(user_agent="travel_planner")
 
 def generate_daily_itinerary(destination, num_days):
-    prompt = f"""
-    Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {destination}.
-    Each item in the list should follow this format:
-
-    '1. Day X: Activity - Exact Physical Address'
-    Only provide the list without intro or conclusion.
-    """
+    prompt = f"Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {destination}. Each item in the list should follow this format:\n\n'Day X: Activity - Exact Physical Address'\n\nFor example:\n\n'Day 1: Visit the Eiffel Tower - Champ de Mars, 5 Av. Anatole France, 75007 Paris, France'\n'Day 1: Explore the Louvre Museum - Rue de Rivoli, 75001 Paris, France'\n...\n\nOnly provide the numbered list of activities and exact physical addresses. Do not include any introductory or concluding paragraphs, explanations, or additional commentary. Do not include the leading number before 'Day X'. have a minimum of 7 activities per day."
     response = model.generate_content(prompt)
     return response.text
 
@@ -82,11 +75,10 @@ if __name__ == "__main__":
 
             itinerary_list_with_coords = parse_itinerary_to_list_with_coords(itinerary_text)
 
-            filename = f"../client/public/locations.json"
-            with open(filename, 'w') as f:
-                json.dump(itinerary_list_with_coords, f, indent=4)
-
-            print(f"\nItinerary exported to: {filename}")
+        filename = f"client/public/locations.json"
+        with open(filename, 'w') as f:
+            json.dump(itinerary_list_with_coords, f, indent=4)
+        print(f"\nItinerary exported to: {filename}")
 
     except ValueError:
         print("Invalid input for the number of days. Please enter a number.")
