@@ -5,7 +5,7 @@ from geopy.geocoders import Nominatim
 import time
 
 # configuration gemini and flask 
-GOOGLE_API_KEY = "AIzaSyCt6WP5b58CiPzVHJTRuayXbqCYSZrY8dE"
+GOOGLE_API_KEY = "key"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 app = Flask(__name__)
