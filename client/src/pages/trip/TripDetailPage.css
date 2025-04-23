@@ -1,6 +1,14 @@
 .trip-detail-page {
-    padding: 2rem;
-  }
+  padding: 2rem;
+  margin-top: 3rem; 
+}
+
+.trip-detail-page h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem; 
+}
+
   
   .location-cards {
     display: flex;

@@ -186,3 +186,28 @@ header p {
     align-items: center;
     gap: 0.3rem;
 }
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(87, 185, 255, 0.1);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(87, 185, 255, 0.2);
+    height: 460px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  
+  .card.your-trips-card {
+    overflow: hidden;
+  }
+  
+  .your-trips {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-top: 1rem;
+    padding-right: 8px;
+  }

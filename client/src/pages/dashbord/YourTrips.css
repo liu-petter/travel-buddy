@@ -1,13 +1,35 @@
-.delete-btn {
-    background: transparent;
-    border: none;
-    color: #ff6b6b;
-    float: right;
-    margin-top: -30px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .delete-btn:hover {
-    color: #e60023;
-  }
+.your-trips-card {
+  display: flex;
+  flex-direction: column;
+  height: 460px;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.your-trips-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 0.5rem 6px -2rem;
+  gap: 1.25rem;
+  flex-grow: 1;
+}
+
+
+
+.no-trips-message {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #444;
+  font-weight: 600;
+  opacity: 0.75;
+  padding: 1rem;
+}

@@ -11,32 +11,44 @@
 
 .card {
   background-color: white;
-  width: 300px;
-  max-width: 85vw;
-  height: 400px;
+  width: 320px;
+  max-width: 90vw;
+  min-height: 500px;
   border-radius: 10px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #3399ff;
+  text-align: center;
 }
 
 .card p {
   font-size: 14px;
-  color: #444;
+  color: #333;
+  text-align: center;
 }
 
-.done-btn {
-  margin-top: 30px;
-  padding: 12px 20px;
-  font-size: 16px;
-  background-color: #28a745;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+.card-map {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  text-align: center;
 }

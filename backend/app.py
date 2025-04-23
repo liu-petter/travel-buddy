@@ -2,50 +2,50 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
 from geopy.geocoders import Nominatim
-from dotenv import load_dotenv
-import json
-import os
 import time
 
-load_dotenv()
-
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# configuration gemini and flask 
+GOOGLE_API_KEY = "AIzaSyCt6WP5b58CiPzVHJTRuayXbqCYSZrY8dE"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 app = Flask(__name__)
 CORS(app)
 
-model = genai.GenerativeModel('gemini-1.5-pro-latest')
+model = genai.GenerativeModel("gemini-1.5-pro-latest")
 geolocator = Nominatim(user_agent="travel_planner")
 
-def generate_daily_itinerary(city, num_days):
+# generates prompts by using gemini
+def generate_itinerary(city, days):
     prompt = f"""
-    Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {city}. Format:
-    1. Day X: Activity - Address
-    Only include the list, no extra text. insure there are at least 7 activities per day.
+    Generate a list of short activities and exact addresses for a {days}-day trip to {city}.
+    Format like:
+    1. Day X: Activity - Full address
+    Only return the list, no extra text.
     """
     response = model.generate_content(prompt)
     return response.text
 
-def get_lat_long(address):
+# getting the geocode (physical) address using Nominatim 
+def geocode(address):
     try:
         location = geolocator.geocode(address, timeout=10)
         if location:
             return location.latitude, location.longitude
     except Exception as e:
-        print("Geocode error:", e)
+        print("Geocoding failed:", e)
     return None, None
 
-def parse_itinerary(text):
+# parse AI response into structured objects with coordinates 
+def parse_response(text):
     results = []
-    for line in text.strip().split('\n'):
-        if not line or not line[0].isdigit():
+    for line in text.split("\n"):
+        if not line.strip() or not line[0].isdigit():
             continue
         try:
-            _, content = line.split('. ', 1)
-            activity, address = content.split(' - ')
-            lat, lng = get_lat_long(address)
-            time.sleep(1)  # to avoid Nominatim throttling
+            _, content = line.split(". ", 1)
+            activity, address = content.rsplit(" - ", 1)
+            lat, lng = geocode(address)
+            time.sleep(1)  # prevents throttling
             results.append({
                 "activity": activity.strip(),
                 "exact_address": address.strip(),
@@ -56,33 +56,26 @@ def parse_itinerary(text):
             print("Parse error:", e)
     return results
 
-@app.route('/generate-plan', methods=['POST'])
+# trip generation with gemini
+@app.route("/generate-plan", methods=["POST"])
 def generate_plan():
-    data = request.json
-    city = data.get('city')
-    days = data.get('days')
+    data = request.get_json()
+    city = data.get("city")
+    days = data.get("days")
 
     if not city or not days:
         return jsonify({"error": "Missing city or days"}), 400
 
-    print(f" Generating plan for {city} ({days} days)...")
+    print(f"Generating {days}-day trip to {city}...")
 
     try:
-        raw = generate_daily_itinerary(city, int(days))
-        structured = parse_itinerary(raw)
-
-        
-        output_path = os.path.join(os.path.dirname(__file__), "../client/public/locations.json")
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(structured, f, indent=4, ensure_ascii=False)
-
-        return jsonify(structured)
-
+        raw = generate_itinerary(city, days)
+        places = parse_response(raw)
+        return jsonify(places)
     except Exception as e:
-        print(" Error generating plan:", e)
+        print("Generation error:", e)
         return jsonify({"error": "Failed to generate plan"}), 500
 
-if __name__ == '__main__':
+# to runn the server
+if __name__ == "__main__":
     app.run(port=5000)
