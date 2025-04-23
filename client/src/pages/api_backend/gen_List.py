@@ -7,16 +7,17 @@ from geopy.geocoders import Nominatim
 
 GOOGLE_API_KEY = "YOUR_GEMINI_API_KEY"  
 genai.configure(api_key=GOOGLE_API_KEY)
-
 model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 geolocator = Nominatim(user_agent="travel_planner")
 
-def generate_daily_itinerary(city, num_days):
+def generate_daily_itinerary(destination, num_days):
     prompt = f"""
-    Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {city}. Format:
-    1. Day X: Activity - Address
-    Only include the list, no extra text. insure there are at least 7 activities per day.
+    Generate a numbered list of activities and their exact physical addresses (including street number, street name, city, postal code, and country) for a {num_days}-day trip to {destination}.
+    Each item in the list should follow this format:
+
+    '1. Day X: Activity - Exact Physical Address'
+    Only provide the list without intro or conclusion.
     """
     response = model.generate_content(prompt)
     return response.text
